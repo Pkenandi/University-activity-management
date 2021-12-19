@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: API-GATEWAY
+  main:
+    web-application-type: reactive
   cloud:
     gateway:
       routes:
@@ -32,19 +34,15 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 4000
+            timeoutInMilliseconds: 10000
 
 #actuator config
 management:
   endpoints:
     web:
       exposure:
-        include: hystrix.stream
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    hostname: localhost
+        include: "*"
+  endpoint:
+    hystrix:
+      stream:
+        enabled: true
