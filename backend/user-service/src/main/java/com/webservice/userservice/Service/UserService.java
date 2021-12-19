@@ -57,7 +57,7 @@ public class UserService {
         User user = this.userRepository.findById(userId)
                 .orElseThrow(() -> new Exception(" User not found"));
         Department department =
-                restTemplate.getForObject("http://localhost:8001/departments/name/" + user.getDepartmentName(),
+                restTemplate.getForObject("http://DEPARTMENT-SERVICE/departments/name/" + user.getDepartmentName(),
                 Department.class);
         return Optional.ofNullable(department)
                 .map(dep -> {
