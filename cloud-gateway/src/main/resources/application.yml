@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8088
 
 spring:
   application:
@@ -27,6 +27,15 @@ spring:
               args:
                 name: DEPARTMENT-SERVICE
                 fallbackuri: forward:/departmentServiceFallBack
+        - id: COURSE-SERVICE
+          uri: lb://COURSE-SERVICE
+          predicates:
+            - Path=/courses/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: COURSE-SERVICE
+                fallbackuri: forward:/courseServiceFallBack
 #hystrix config
 hystrix:
   command:

@@ -17,4 +17,10 @@ public class FallBackMethodController {
         return "Department Service is taking longer than expected." +
                 " Please try later";
     }
+
+    @GetMapping("/courseServiceFallBack")
+    public String courseServiceFallBackMethod() {
+        return "Course Service is taking longer than expected." +
+                " Please try later";
+    }
 }
